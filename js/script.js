@@ -1,5 +1,5 @@
 // Buttone per fare partire  tutto
-var btn = document.getElementById('calculate');
+var btn = document.getElementById('gameBegin');
 btn.addEventListener('click', randomNumber);
 
 // Funzione di random
@@ -31,10 +31,10 @@ function randomNumber (min, max){
 }
 
 // funzione di timer 30 secondi
-var sec;
-var clock;
-
 function timer (){
+
+  var sec;
+  var clock;
 
   function tick() {
 
@@ -42,7 +42,7 @@ function timer (){
     if (sec < 0) {
 
       clearInterval(clock);
-
+      game();
     }
   }
 
@@ -55,15 +55,14 @@ function timer (){
 
   init();
 
-  setTimeout(game, 30100);
 }
 
 // Funzione per inserire 5 numeri random da ricordare
-var arrUser;
 
 function game (){
 
-  arrUser = [];
+  var arrUser = [];
+  var numbersnone = [];
 
   for (var i = 0; i < 5; i++) {
 
@@ -71,6 +70,9 @@ function game (){
 
     if (rndArray.includes(numberUser)) {
       arrUser.push(numberUser);
+    }
+    else {
+      numbersnone.push(numberUser);
     }
 
     console.log(arrUser);
@@ -90,9 +92,9 @@ function game (){
   }
 
   var numbersPc = document.getElementById('numbersPc').innerHTML = 'Numeri che dovevi ricordare: ' + rndArray;
-  var numbersUser = document.getElementById('numbersUser').innerHTML = 'Numeri indovinati: ' + arrUser;
+  var numbersUser = document.getElementById('numbersUser').innerHTML = 'Numeri inseriti dal giocatore: ' + arrUser + ',' + numbersnone;
 }
 
 // randomNumber(1, 100);
 // timer();
-// setTimeout(game, 2100);
+// game();
