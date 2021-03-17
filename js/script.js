@@ -48,7 +48,7 @@ function timer (){
 
   function init() {
 
-    sec = 30;
+    sec = 1;
     clock = setInterval(tick, 1000);
 
   }
@@ -64,35 +64,52 @@ function game (){
   var arrUser = [];
   var numbersnone = [];
 
-  for (var i = 0; i < 5; i++) {
+  while (arrUser.length + numbersnone.length < 5) {
 
     var numberUser = parseInt(prompt('Inserisci numeri che dovevi ricordare:'))
 
     if (rndArray.includes(numberUser)) {
-      arrUser.push(numberUser);
+      // arrUser.push(numberUser);
+
+      if (arrUser.includes(numberUser)) {
+        alert("Avete gia inserito questo numero")
+      }
+      else {
+        arrUser.push(numberUser);
+      }
+
     }
     else {
-      numbersnone.push(numberUser);
+
+      if (numbersnone.includes(numberUser)) {
+        alert("Avete gia inserito questo numero")
+      }
+      else {
+        numbersnone.push(numberUser);
+      }
+
     }
 
-    console.log(arrUser);
+    console.log("Numeri Giusti",  arrUser, "Numeri Sbagliati",  numbersnone);
+
 
   }
 
 
   if (arrUser.length == 5 ) {
     var winer = document.getElementById('winer').innerHTML =
-    ('You Win, hai ricordato tutti numeri');
-    console.log("You Win, hai ricordato tutti numeri");
+    ('You Win');
+    console.log("You Win");
   }
   else {
     var loser = document.getElementById('loser').innerHTML =
-    ('You Lose, ma hai indovinato: ' + arrUser.length + ' numeri che sono = ' + arrUser);
-    console.log('You Lose, ma hai indovinato: ' + arrUser.length + ' numeri che sono = ' + arrUser);
+    ('You Lose');
+    console.log('You Lose');
   }
 
   var numbersPc = document.getElementById('numbersPc').innerHTML = 'Numeri che dovevi ricordare: ' + rndArray;
-  var numbersUser = document.getElementById('numbersUser').innerHTML = 'Numeri inseriti dal giocatore: ' + arrUser + ',' + numbersnone;
+  var numbersCorrect = document.getElementById('numbersCorrect').innerHTML = 'Numeri Giusti che avete inseriti: ' + arrUser.length + ' (che sono)= ' + arrUser;
+  var numbersWrong = document.getElementById('numbersWrong').innerHTML = 'Numeri Sbagliati che avete inseriti: ' + numbersnone.length + ' (che sono)= ' + numbersnone;
 }
 
 // randomNumber(1, 100);
