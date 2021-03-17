@@ -1,39 +1,33 @@
+// Buttone per fare partire  tutto
+var btn = document.getElementById('calculate');
+btn.addEventListener('click', randomNumber);
+
 // Funzione di random
 var rndArray;
 
 function randomNumber (min, max){
 
   rndArray = [];
+  var rndMin = 1;
+  var rndMax = 100 - 1 + 1;
 
-  for (var i = 0; i < 5; i++) {
-    var rndMin = min;
-    var rndMax = max - min + 1;
+  while (rndArray.length < 5) {
+
     var rnd = Math.floor(Math.random() * rndMax) + rndMin;
-    var nuovo = true;
-
-    // Ciclo per distinguere numeri presenti dentro arrei
-    for(var x = 0; x < i; x++){
-
-      if(rndArray[x] == rnd) nuovo = false;
+    if (rndArray.includes(rnd)) {
 
     }
-    // Se un numero non presente gia dentro arrei lo aggiunge
-    if(nuovo){
-
-      rndArray[i] = rnd;
-
-    }
-    // Se un numero presente gia dentro arrei lo toglie
-    else{
-
-      i--;
-
+    else {
+      rndArray.push(rnd)
     }
 
   }
 
   console.log(rndArray);
   alert('Ricordati questi numeri:' + rndArray);
+
+  timer();
+
 }
 
 // funzione di timer 30 secondi
@@ -54,12 +48,14 @@ function timer (){
 
   function init() {
 
-    sec = 5;
+    sec = 30;
     clock = setInterval(tick, 1000);
 
   }
 
   init();
+
+  setTimeout(game, 30100);
 }
 
 // Funzione per inserire 5 numeri random da ricordare
@@ -67,9 +63,9 @@ var arrUser;
 
 function game (){
 
-  var arrUser = [];
+  arrUser = [];
 
-  for (var i = 0; i < rndArray.length; i++) {
+  for (var i = 0; i < 5; i++) {
 
     var numberUser = parseInt(prompt('Inserisci numeri che dovevi ricordare:'))
 
@@ -80,9 +76,9 @@ function game (){
     console.log(arrUser);
 
   }
-  // var numbersUser = document.getElementById('numbersUser').innerHTML = 'Numeri indovinati: ' + arrUser;
 
-  if (rndArray = arrUser) {
+
+  if (arrUser.length == 5 ) {
     var winer = document.getElementById('winer').innerHTML =
     ('You Win, hai ricordato tutti numeri');
     console.log("You Win, hai ricordato tutti numeri");
@@ -97,6 +93,6 @@ function game (){
   var numbersUser = document.getElementById('numbersUser').innerHTML = 'Numeri indovinati: ' + arrUser;
 }
 
-randomNumber(1, 100);
-timer();
-setTimeout(game, 6100);
+// randomNumber(1, 100);
+// timer();
+// setTimeout(game, 2100);
